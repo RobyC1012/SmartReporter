@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>Report Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">
+        <ion-icon name="close" slot="start"></ion-icon>
+        Cancel
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="report">
+    <ion-item>
+      <ion-label position="stacked">Title</ion-label>
+      <ion-input [(ngModel)]="report.title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Description</ion-label>
+      <ion-textarea [(ngModel)]="report.text" rows="8">
+      </ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Location</ion-label>
+      <ion-input [(ngModel)]="report.latitude">Latitude: </ion-input>
+      <ion-input [(ngModel)]="report.longitude">Longitude: </ion-input>
+    </ion-item>
+    <ion-avatar (click)="setImage()">
+      <img *ngIf="report.imageUrl; else placheolder_image;" [src]="report.imageUrl" />
+      <ng-template #placheolder_image>
+        <div class="fallback">
+          <ion-button>Select image</ion-button>
+        </div>
+      </ng-template>
+    </ion-avatar>
+  </div>
+  <ion-button expand="block" color="success" (click)="updateReport()">
+    <ion-icon name="save" slot="start"></ion-icon>
+    Update
+  </ion-button>
+  <ion-button expand="block" color="danger" (click)="deleteReport()">
+    <ion-icon name="trash" slot="start"></ion-icon>
+    Delete
+  </ion-button>
+  <ion-button expand="block" color="secondary" (click)="setImage()">
+    <ion-icon name="image" slot="start"></ion-icon>
+    Set Image
+  </ion-button>
+</ion-content>
